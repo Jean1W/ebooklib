@@ -33,7 +33,6 @@ package com.asvital.flash.core
 			timer.addEventListener(TimerEvent.TIMER,onTimerHandler);
 			timer.start();
 			
-			
 			var urlloader:URLLoader = new URLLoader();		
 			urlloader.addEventListener(Event.COMPLETE,onCompleteHandler);
 			urlloader.addEventListener(IOErrorEvent.IO_ERROR,onErrorHandler);

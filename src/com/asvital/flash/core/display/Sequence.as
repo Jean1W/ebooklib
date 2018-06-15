@@ -113,10 +113,7 @@ package com.asvital.flash.core.display
 			//turn.alpha = 0.5;
 			turn.visible = false;
 			
-			
 			turn.y = h-turn.height-50;
-			
-			
 			
 			load.contentLoaderInfo.addEventListener(Event.COMPLETE,onCompleteHandler);
 			load.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR,onErrorHandler);			
@@ -127,9 +124,29 @@ package com.asvital.flash.core.display
 			this.addEventListener(MouseEvent.MOUSE_OUT,onMouseUpHandler);
 			//this.addEventListener(MouseEvent.RELEASE_OUTSIDE,onMouseUpHandler);
 			this.addEventListener(MouseEvent.CLICK,onClickHandler);
+			this.addEventListener(MouseEvent.MOUSE_WHEEL, onMouseWheelHandler);
+			this.addEventListener(MouseEvent.MOUSE_OVER,onMouseOverHandler);
 			
-		}	
-		
+		}
+		private function onMouseOverHandler(e:MouseEvent):void{
+            //trace(e.delta)
+
+		}
+		private function onMouseWheelHandler(e:MouseEvent):void{
+            trace(e.delta);
+            if(_isLoad==false){
+                    if(e.delta<0){
+                        index++;
+                        isLeft = false;
+                        turnLeft.alpha = 1;
+                    }else{
+                        index--;
+                        isLeft = true;
+                        turnRight.alpha = 1;
+                    }
+                    playIndex(index);
+			}
+		}
 		protected function onBackButtonHandler(event:MouseEvent):void
 		{
 			this.visible = false;		
@@ -358,7 +375,6 @@ package com.asvital.flash.core.display
 			}
 			
 			onMouseMoveHandler(null);
-			trace(index);
 		}
 		
 		protected function onMouseMoveHandler(event:MouseEvent):void
